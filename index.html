@@ -172,6 +172,20 @@ header{flex-wrap:wrap;row-gap:10px}
 .logo i{background:linear-gradient(90deg,#00d4ff 0%,#a855f7 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .card:hover{border-color:#a855f7}
 .badge::before{background:linear-gradient(90deg,#00d4ff,#a855f7)}
+
+/* stack: duas faixas em sentidos opostos */
+.stack-wrap{margin-top:22px;display:grid;gap:12px;overflow:hidden}
+.stack-title{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.mq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq-track{display:flex;gap:12px;width:max-content;will-change:transform}
+.mq-left{animation:mqLeft 28s linear infinite}
+.mq-right{animation:mqRight 28s linear infinite}
+.mq:hover .mq-track{animation-play-state:paused}
+.mq-chip{flex:0 0 auto;font-size:.8rem;color:var(--tx);padding:8px 16px;border-radius:999px;border:1px solid rgba(168,85,247,.35);background:rgba(13,18,26,.7);white-space:nowrap}
+@keyframes mqLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes mqRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@media(prefers-reduced-motion:reduce){.mq-track{animation:none}}
+.stackblk{padding-top:18px;padding-bottom:0}
 </style>
 </head>
 <body>
@@ -198,6 +212,11 @@ header{flex-wrap:wrap;row-gap:10px}
   <p><strong>Automação com IA</strong>, <strong class="hl">tráfego pago que converte</strong>, <strong>sites que vendem</strong> e sistemas próprios sob medida. A TechFlow entrega <strong class="hl">resultado real</strong>: rastreável, mensurável e no prazo.</p>
 </section>
 
+
+<section class="hero stackblk">
+  <div class="stack-wrap"><div class="stack-title">Stack que usamos</div><div class="mq"><div class="mq-track mq-left"><span class="mq-chip">Google Ads</span><span class="mq-chip">Meta Ads</span><span class="mq-chip">WhatsApp API</span><span class="mq-chip">n8n</span><span class="mq-chip">Google Ads</span><span class="mq-chip">Meta Ads</span><span class="mq-chip">WhatsApp API</span><span class="mq-chip">n8n</span></div></div><div class="mq"><div class="mq-track mq-right"><span class="mq-chip">Node.js</span><span class="mq-chip">Python</span><span class="mq-chip">HTML/CSS/JS</span><span class="mq-chip">Docker</span><span class="mq-chip">Node.js</span><span class="mq-chip">Python</span><span class="mq-chip">HTML/CSS/JS</span><span class="mq-chip">Docker</span></div></div></div>
+
+</section>
 <section class="hero statsblk" id="statsblk">
   <div class="acts">
     <a class="btn ghost" href="#portfolio">Ver projetos entregues</a>
@@ -208,9 +227,7 @@ header{flex-wrap:wrap;row-gap:10px}
     <div><b>Brasil &amp; EUA</b>clientes ativos</div>
     <div><b>100%</b>no prazo</div>
   </div>
-  <div class="stack"><b>Stack que usamos:</b> Google Ads · Meta Ads · WhatsApp API · n8n · Node.js · Python</div>
-</section>
-
+  </section>
 <main id="rows"></main>
 
 <section class="sec" id="crescimento">
@@ -236,7 +253,7 @@ header{flex-wrap:wrap;row-gap:10px}
 
 <section class="sec" id="orcamento">
   <h2>Me conta sobre o seu projeto</h2>
-  <p>Preencha o formulário e envie direto pro WhatsApp. Já chega pra mim com tudo organizado, sem enrolação.</p>
+  <p>Preencha o formulário e envie direto pro WhatsApp. Eu analiso o seu caso e retorno com uma proposta sob medida.</p>
   <form id="fm">
     <label>Nome completo<input name="n" required placeholder="João da Silva"></label>
     <label>Empresa / Negócio<input name="e" placeholder="Nome do seu negócio"></label>
@@ -357,7 +374,7 @@ ROWS.forEach((r,ri)=>{
   sec.querySelector('.l').onclick=()=>tr.scrollBy({left:-tr.clientWidth*.8,behavior:'smooth'});
   sec.querySelector('.r').onclick=()=>tr.scrollBy({left:tr.clientWidth*.8,behavior:'smooth'});
   (r.id==='ia'?document.getElementById('iaslot'):rows).appendChild(sec);
-  if(r.id==='servicos')rows.appendChild(document.getElementById('statsblk'));
+
 });
 
 let last;
