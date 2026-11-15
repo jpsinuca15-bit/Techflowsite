@@ -141,7 +141,7 @@ header{flex-wrap:wrap;row-gap:10px}
 .cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;display:block}
 .cover span,.cover em{position:relative;z-index:1}
 .cover:has(.cover-img)::before,.cover:has(.cover-img)::after{display:none}
-.hero-photo{position:relative;width:96px;height:96px;border-radius:50%;border:2px dashed rgba(0,212,255,.55);box-shadow:0 0 0 5px rgba(0,212,255,.10);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--mut);font-size:.66rem;text-align:center;line-height:1.2;padding:8px}
+.hero-photo{position:relative;width:118px;height:118px;border-radius:50%;border:2px dashed rgba(0,212,255,.55);box-shadow:0 0 0 5px rgba(0,212,255,.10);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--mut);font-size:.7rem;text-align:center;line-height:1.2;padding:8px;cursor:zoom-in;transition:transform .3s ease,box-shadow .3s ease}
 .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:50%}
 .hero-photo span{position:relative}
 
@@ -153,6 +153,12 @@ header{flex-wrap:wrap;row-gap:10px}
 .hero-photo{margin-left:auto;margin-right:auto}
 .slogan{text-align:center}
 .stack{text-align:center}
+.hero-photo:hover,.hero-photo:focus-visible{transform:scale(1.08);box-shadow:0 0 0 6px rgba(0,212,255,.18),0 10px 30px rgba(0,212,255,.25)}
+@media(min-width:900px){.hero-photo{width:136px;height:136px}}
+.photo-zoom{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+.photo-zoom[hidden]{display:none}
+.photo-zoom img{max-width:100%;max-height:90vh;width:auto;height:auto;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.photo-zoom-x{position:absolute;top:14px;right:16px;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.55);border:1px solid var(--line);color:var(--tx);font-size:1.2rem;cursor:pointer}
 </style>
 </head>
 <body>
@@ -380,6 +386,35 @@ document.getElementById('fm').addEventListener('submit',e=>{
   e.preventDefault();const f=new FormData(e.target);
   window.open(wa(`Olá, vim pelo site da TechFlow.\nNome: ${f.get('n')}\nEmpresa: ${f.get('e')}\nContato: ${f.get('c')}\nServiço: ${f.get('s')}\nProjeto: ${f.get('d')}`),'_blank');
 });
+
+/* ===== FOTO DO HERO: clique amplia a foto inteira ===== */
+(function(){
+  const heroPhoto = document.querySelector('.hero-photo');
+  const zoom = document.getElementById('photoZoom');
+  const zoomImg = document.getElementById('photoZoomImg');
+  const zoomClose = document.getElementById('photoZoomClose');
+  if (!heroPhoto || !zoom) return;
+  const src = heroPhoto.querySelector('img');
+  const openZoom = () => {
+    if (!src || !src.complete || src.naturalWidth === 0) return;
+    zoomImg.src = src.src;
+    zoom.hidden = false;
+    document.body.style.overflow = 'hidden';
+  };
+  const closeZoom = () => { zoom.hidden = true; document.body.style.overflow = ''; };
+  heroPhoto.setAttribute('tabindex', '0');
+  heroPhoto.setAttribute('role', 'button');
+  heroPhoto.setAttribute('aria-label', 'Ampliar foto');
+  heroPhoto.addEventListener('click', openZoom);
+  heroPhoto.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openZoom(); } });
+  zoom.addEventListener('click', e => { if (e.target === zoom || e.target === zoomClose) closeZoom(); });
+  zoomClose.addEventListener('click', closeZoom);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !zoom.hidden) closeZoom(); });
+})();
 </script>
+<div class="photo-zoom" id="photoZoom" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <img id="photoZoomImg" alt="João Paulo, fundador da TechFlow">
+  <button class="photo-zoom-x" id="photoZoomClose" aria-label="Fechar">✕</button>
+</div>
 </body>
 </html>
