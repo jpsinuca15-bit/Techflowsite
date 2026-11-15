@@ -138,6 +138,8 @@ header{flex-wrap:wrap;row-gap:10px}
 
 .cover.has-pic{background:var(--pic) center top/cover no-repeat!important}
 .cover.has-pic::before,.cover.has-pic::after{display:none}
+.cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;display:block}
+.cover span,.cover em{position:relative;z-index:1}
 </style>
 </head>
 <body>
@@ -315,7 +317,7 @@ ROWS.forEach((r,ri)=>{
     const g=it.g=PAL[N++%PAL.length];
     const b=document.createElement('button');b.className='card';
     const pv=it.b&&!it.q&&r.id!=='mais'?`<ul class="pv">${it.b.slice(0,2).map(x=>`<li>${x}</li>`).join('')}</ul>`:'';
-    b.innerHTML=`<div class="cover${it.pic?' has-pic':''}" style="--c1:${g[0]};--c2:${g[1]};${it.pic?`--pic:url('${it.pic}')`:''}"><span>${it.i}</span>${it.tag?`<em>${it.tag}</em>`:''}</div><div class="cbody"><h3>${it.t}</h3><p>${it.d}</p>${pv}${it.p?`<span class="price"><small>Investimento</small>${it.p}</span>`:''}${it.cta?`<span class="price">${it.cta}</span>`:''}</div>`;
+    b.innerHTML=`<div class="cover" style="--c1:${g[0]};--c2:${g[1]}">${it.pic?`<img src="${it.pic}" alt="" class="cover-img">`:''}<span>${it.i}</span>${it.tag?`<em>${it.tag}</em>`:''}</div><div class="cbody"><h3>${it.t}</h3><p>${it.d}</p>${pv}${it.p?`<span class="price"><small>Investimento</small>${it.p}</span>`:''}${it.cta?`<span class="price">${it.cta}</span>`:''}</div>`;
     if(it.id)b.id=it.id;
     b.onclick=()=>open(it);tr.appendChild(b);
   });
@@ -329,7 +331,7 @@ let last;
 function open(it){
   last=document.activeElement;const g=it.g;
   const href=it.l&&!it.m?it.l:(it.m?wa(it.m):'#');
-  let h=`<div class="cover${it.pic?' has-pic':''}" style="--c1:${g[0]};--c2:${g[1]};${it.pic?`--pic:url('${it.pic}')`:''}"><span>${it.i}</span>${it.tag?`<em>${it.tag}</em>`:''}</div><button class="x" aria-label="Fechar">✕</button><div class="in"><h3>${it.t}</h3><p class="d">${it.x||it.d}</p>`;
+  let h=`<div class="cover" style="--c1:${g[0]};--c2:${g[1]}">${it.pic?`<img src="${it.pic}" alt="" class="cover-img">`:''}<span>${it.i}</span>${it.tag?`<em>${it.tag}</em>`:''}</div><button class="x" aria-label="Fechar">✕</button><div class="in"><h3>${it.t}</h3><p class="d">${it.x||it.d}</p>`;
   if(it.im)h+=`<img src="${it.im}" alt="${it.t}" onerror="this.remove()" style="width:100%;max-height:260px;object-fit:cover;border-radius:12px;margin-bottom:14px">`;
   if(it.b)h+='<ul>'+it.b.map(x=>`<li>${x}</li>`).join('')+'</ul>';
   if(it.r)h+=`<div class="pp">📈 ${it.r}</div>`;
