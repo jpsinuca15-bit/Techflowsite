@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Representante Digital | TechFlow</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05070a;--card:#0d121a;--line:#1c2533;--tx:#eef1f6;--mut:#9aa4b5;--ac:#00d4ff;--ac2:#a855f7}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2{font-family:'Space Grotesk','Inter',sans-serif}
+header{display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;border-bottom:1px solid var(--line)}
+.logo{font-weight:800;font-size:1.2rem;letter-spacing:-.02em}
+.logo i{font-style:normal;background:linear-gradient(90deg,#00d4ff,#a855f7);-webkit-background-clip:text;background-clip:text;color:transparent}
+.back{font-size:.85rem;color:var(--mut);border:1px solid var(--line);padding:8px 16px;border-radius:999px}
+.back:hover{color:var(--tx);border-color:var(--ac)}
+main{max-width:1000px;margin:0 auto;padding:56px 5vw 80px;text-align:center}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);border:1px solid rgba(0,212,255,.35);padding:6px 14px;border-radius:999px;margin-bottom:18px}
+h1{font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:-.03em;line-height:1.15;margin-bottom:12px}
+h1 span{background:linear-gradient(90deg,#00d4ff,#a855f7);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--mut);max-width:620px;margin:0 auto 44px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;text-align:left}
+.vcard{background:linear-gradient(160deg,#121826,var(--card));border:1px solid var(--line);border-radius:18px;padding:14px;overflow:hidden}
+.vcard video{width:100%;display:block;border-radius:12px;background:#000;aspect-ratio:9/16;object-fit:cover}
+.vcard h2{font-size:1rem;margin:14px 6px 4px}
+.vcard p{font-size:.85rem;color:var(--mut);margin:0 6px 6px}
+.cta{margin-top:56px}
+.btn{display:inline-block;padding:14px 28px;border-radius:999px;background:var(--ac);color:#04141a;font-weight:700;font-size:.95rem}
+.btn:hover{filter:brightness(1.12)}
+.note{font-size:.78rem;color:var(--mut);margin-top:18px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="index.html"><span style="color:#00d4ff">&#9889;</span> Tech<i>Flow</i></a>
+  <a class="back" href="index.html">&larr; Voltar ao site</a>
+</header>
+<main>
+  <span class="tag">Representante Digital</span>
+  <h1>Veja o <span>representante digital</span> em ação</h1>
+  <p class="sub">Vídeos feitos com IA, com a imagem e a voz de quem representa a marca, publicados toda semana para redes e anúncios.</p>
+
+  <div class="grid">
+    <div class="vcard">
+      <video controls playsinline preload="metadata" src="assets/videos/representante-1.mp4"></video>
+      <h2>Exemplo 1</h2>
+      <p>Apresentação do representante digital.</p>
+    </div>
+    <div class="vcard">
+      <video controls playsinline preload="metadata" src="assets/videos/representante-2.mp4"></video>
+      <h2>Exemplo 2</h2>
+      <p>Apresentação do representante digital.</p>
+    </div>
+  </div>
+
+  <div class="cta">
+    <a class="btn" href="https://api.whatsapp.com/send?phone=5531999232730&text=Quero%20meu%20representante%20digital!" target="_blank" rel="noopener">Quero meu representante digital</a>
+    <p class="note">Usamos a imagem e a voz de pessoas somente com autorização por escrito.</p>
+  </div>
+</main>
+</body>
+</html>
