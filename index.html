@@ -186,6 +186,46 @@ header{flex-wrap:wrap;row-gap:10px}
 @keyframes mqRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 @media(prefers-reduced-motion:reduce){.mq-track{animation:none}}
 .stackblk{padding-top:18px;padding-bottom:0}
+
+.bot{position:fixed;right:18px;bottom:88px;z-index:55;width:min(340px,calc(100vw - 36px));max-height:70vh;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 20px 50px rgba(0,0,0,.55);overflow:hidden}
+.bot[hidden]{display:none}
+.bot-head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:linear-gradient(90deg,rgba(0,212,255,.14),rgba(168,85,247,.14));border-bottom:1px solid var(--line)}
+.bot-head b{display:block;font-size:.95rem}
+.bot-head small{color:var(--mut);font-size:.72rem}
+.bot-dot{width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);flex:0 0 auto}
+.bot-x{margin-left:auto;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);color:var(--tx);font-size:.9rem}
+.bot-body{padding:14px;display:flex;flex-direction:column;gap:9px;overflow-y:auto;min-height:150px}
+.bot-msg{max-width:85%;padding:9px 12px;border-radius:14px;font-size:.88rem;line-height:1.45;background:var(--bg-elevated,#18150f);border:1px solid var(--line);align-self:flex-start}
+.bot-msg.me{align-self:flex-end;background:linear-gradient(90deg,#00d4ff,#a855f7);color:#fff;border:0}
+.bot-opts{padding:12px 14px 14px;display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid var(--line)}
+.bot-opt{font-size:.8rem;padding:8px 13px;border-radius:999px;border:1px solid rgba(168,85,247,.45);color:var(--tx);background:transparent}
+.bot-opt:hover{border-color:var(--ac)}
+.bot-go{font-size:.85rem;padding:10px 16px;border-radius:999px;background:linear-gradient(90deg,#00d4ff,#a855f7);color:#fff;font-weight:700;text-align:center;width:100%}
+.sim-wrap{display:flex;justify-content:center;margin:6px 0 10px;padding:0 4vw}
+.sim-btn{cursor:pointer}
+.bot{width:min(380px,calc(100vw - 36px));max-height:78vh;right:50%;transform:translateX(50%);bottom:24px}
+
+/* ===== CARD: LABORATÓRIO DE IA ===== */
+.lab-card-wrap{padding:28px 4vw 8px;max-width:1100px;margin:0 auto}
+.lab-card{position:relative;display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;padding:34px 36px;border-radius:22px;overflow:hidden;text-decoration:none;color:var(--tx);background:linear-gradient(135deg,#070b14 0%,#0d1322 60%,#120d22 100%);border:1px solid rgba(168,85,247,.35);box-shadow:0 24px 60px rgba(0,0,0,.45);transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.lab-card:hover,.lab-card:focus-visible{transform:translateY(-4px);border-color:rgba(0,212,255,.55);box-shadow:0 30px 70px rgba(0,0,0,.55),0 0 40px rgba(0,212,255,.12)}
+.lab-card-glow{position:absolute;inset:-40% -10% auto auto;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,.22),rgba(168,85,247,.12) 45%,transparent 70%);pointer-events:none}
+.lab-card-body{position:relative;z-index:1}
+.lab-tag{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);border:1px solid rgba(0,212,255,.35);padding:6px 14px;border-radius:999px;margin-bottom:16px}
+.lab-card h3{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(1.5rem,3.2vw,2.1rem);line-height:1.15;letter-spacing:-.02em;margin-bottom:12px;background:linear-gradient(90deg,#ffffff 0%,#00d4ff 55%,#a855f7 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lab-card p{color:var(--mut);font-size:.98rem;line-height:1.6;max-width:460px}
+.lab-cta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:13px 24px;border-radius:999px;font-weight:700;font-size:.92rem;color:#fff;background:linear-gradient(90deg,#00d4ff,#a855f7);box-shadow:0 10px 28px rgba(168,85,247,.3)}
+.lab-cta i{font-style:normal;transition:transform .3s ease}
+.lab-card:hover .lab-cta i{transform:translateX(4px)}
+.lab-card-visual{position:relative;z-index:1;display:flex;flex-direction:column;gap:10px}
+.lab-bubble{max-width:88%;padding:11px 14px;border-radius:16px;font-size:.84rem;line-height:1.45;border:1px solid var(--line);background:rgba(13,18,26,.85)}
+.lab-bubble--in{align-self:flex-start;border-bottom-left-radius:4px}
+.lab-bubble--out{align-self:flex-end;border-bottom-right-radius:4px;background:linear-gradient(90deg,rgba(0,212,255,.18),rgba(168,85,247,.22));border-color:rgba(168,85,247,.35);color:#fff}
+@media(max-width:800px){
+  .lab-card{grid-template-columns:1fr;padding:26px 22px;gap:22px}
+  .lab-card-visual{display:none}
+  .lab-cta{width:100%;justify-content:center}
+}
 </style>
 </head>
 <body>
@@ -203,7 +243,24 @@ header{flex-wrap:wrap;row-gap:10px}
   <p>A TechFlow automatiza <strong class="hl">até 90% das tarefas administrativas</strong> de qualquer empresa, em qualquer nicho, com <strong>funcionários de IA</strong>: administrativo, contábil, tesouraria, RH e atendimento por WhatsApp e por voz.</p>
 </section>
 
-<div id="iaslot"></div>
+<div id="iaslot"></div><div class="sim-wrap"><button class="btn ghost sim-btn" id="simBtn" type="button">Ver simulação do atendente</button></div>
+<section class="lab-card-wrap" id="laboratorio">
+  <a class="lab-card" href="https://jpsinuca15-bit.github.io/laboratoriodeia/" target="_blank" rel="noopener noreferrer" aria-label="Entrar no laboratório de IA da TechFlow">
+    <div class="lab-card-glow" aria-hidden="true"></div>
+    <div class="lab-card-body">
+      <span class="lab-tag">Laboratório TechFlow IA</span>
+      <h3>Converse com a nossa equipe de IA</h3>
+      <p>Experimente atendimento, gestão e vendas com funcionários virtuais. Uma demonstração real, sem cadastro e sem compromisso.</p>
+      <span class="lab-cta">Entrar no laboratório <i>→</i></span>
+    </div>
+    <div class="lab-card-visual" aria-hidden="true">
+      <div class="lab-bubble lab-bubble--in">Quero entender como funciona o atendimento.</div>
+      <div class="lab-bubble lab-bubble--out">Claro! Me conta: como os seus clientes chegam até você hoje?</div>
+      <div class="lab-bubble lab-bubble--in">Pelo WhatsApp, principalmente.</div>
+    </div>
+  </a>
+</section>
+
 
 <section class="hero intro">
   <div class="acts" style="margin-bottom:30px">
@@ -347,11 +404,10 @@ const ROWS=[
  {i:'🎯',t:'Marketing Digital',d:'Gestão mensal de tráfego pago com relatórios semanais.',x:'Gestão mensal de tráfego pago (Google Ads e Meta Ads) com relatórios semanais.',p:'R$697,00 por mês',m:'Olá, quero o plano Marketing Digital (R$697,00/mês) da TechFlow!'}
 ]},
 {id:'mais',t:'Conheça a TechFlow',s:'processo, diferenciais, dúvidas e quem faz',items:[
+ {i:'👨‍💻',tag:'Disponível agora',t:'João Paulo de Oliveira',d:'Desenvolvedor e gestor de tráfego, fundador da TechFlow.',x:'Tenho 7 cursos técnicos em linguagens de programação, arquitetura de software e análise e desenvolvimento de sistemas, incluindo curso técnico de criação e aprofundamento em inteligência artificial e curso técnico de criação e edição de vídeo com inteligência artificial. Sou engenheiro de software graduado pela Faculdade Anhanguera. Toco a TechFlow sozinho, do diagnóstico ao suporte pós-entrega, sem intermediário, sem terceirização. Cada site, automação e sistema que sai daqui passa pela minha mão, do código ao deploy.',im:'assets/joao.jpg',b:['Engenheiro de Software · Faculdade Anhanguera','Atendimento remoto para todo o Brasil e EUA'],tg:['Python','Node.js','HTML/CSS/JS','Docker','n8n','Google Ads','Meta Ads'],m:'Olá, vi a página Sobre da TechFlow e quero conversar!',lb:'Falar comigo no WhatsApp'},
  {i:'🧭',t:'Como funciona',d:'Do contato à entrega em 3 etapas. Sem enrolação.',x:'Sem enrolação, sem reuniões intermináveis. Direto ao ponto.',b:['<b>01 Diagnóstico gratuito:</b> você me conta o negócio, o objetivo e o problema. Eu analiso e apresento o que faz mais sentido pra você, sem compromisso e sem enrolação.','<b>02 Proposta clara:</b> escopo definido, prazo real e valor transparente. Nada de surpresa depois. Você aprova e a gente começa.','<b>03 Entrega + suporte:</b> você acompanha cada etapa via WhatsApp. Após a entrega, suporte contínuo incluso, não sumimos depois que o projeto vai ao ar.','Resposta em até 2 horas no horário comercial.'],m:'Olá, quero agendar um diagnóstico gratuito com a TechFlow!',lb:'Agendar diagnóstico gratuito'},
  {i:'🏆',t:'Por que a TechFlow',d:'Tecnologia séria. Resultado concreto.',x:'Não somos uma agência genérica com portfólio inventado. Somos desenvolvedores e gestores de tráfego que entendem de negócio.',b:['<b>Portfólio verificável:</b> cada projeto está ao vivo e pode ser visitado agora mesmo. Sem print fake, sem promessa.','<b>Atendimento no WhatsApp:</b> comunicação direta, sem burocracia. Você fala comigo e eu resolvo, sem intermediários.','<b>Prazo real e respeitado:</b> o combinado é cumprido. Se eu assumi, vai ser entregue. Simples assim.','<b>Suporte após a entrega:</b> não desapareço depois do projeto. Continuo disponível para ajustes, dúvidas e evoluções.','<b>Brasil &amp; EUA</b> (projetos em dois países) · <b>24/7</b> (automações que nunca param) · <b>72h</b> (prazo médio para o primeiro entregável) · <b>100%</b> entregues no prazo.'],m:'Olá, quero conhecer melhor a TechFlow!',lb:'Falar com a TechFlow'},
  {i:'❓',t:'Perguntas frequentes',d:'Prazo, pagamento, EUA, suporte e tráfego pago.',b:['<b>Quanto tempo leva para entregar um site?</b> Para landing pages e sites institucionais, de 3 a 7 dias úteis após aprovação do escopo e conteúdo. Para projetos maiores, o prazo é definido na proposta.','<b>Como funciona o pagamento?</b> Geralmente 50% no início e 50% na entrega. Para serviços recorrentes (tráfego pago, redes sociais), o pagamento é mensal. Aceitamos Pix, transferência e cartão.','<b>Vocês atendem empresas nos EUA?</b> Sim. Já temos projetos rodando em Massachusetts. Toda comunicação é via WhatsApp, sem burocracia, e conseguimos atender em inglês.','<b>O que preciso fornecer para começar?</b> Dados do negócio (nome, serviços, contato), logo se tiver, e o objetivo do projeto. O resto a gente resolve junto durante o diagnóstico gratuito.','<b>Vocês dão suporte após a entrega?</b> Sim, sempre. Ajustes pós-entrega estão inclusos por 30 dias. Depois, oferecemos planos de manutenção mensal para quem prefere suporte contínuo.','<b>Qual o investimento mínimo para tráfego pago?</b> Recomendamos no mínimo R$800/mês em verba de anúncio + taxa de gestão a partir de R$400/mês. Para o mercado americano, os valores são em dólar e variam por nicho.'],m:'Olá, tenho uma dúvida sobre a TechFlow!',lb:'Tirar dúvida'},
- {i:'👨‍💻',tag:'Disponível agora',t:'João Paulo de Oliveira',d:'Desenvolvedor e gestor de tráfego, fundador da TechFlow.',x:'Tenho 7 cursos técnicos em linguagens de programação, arquitetura de software e análise e desenvolvimento de sistemas, incluindo curso técnico de criação e aprofundamento em inteligência artificial e curso técnico de criação e edição de vídeo com inteligência artificial. Sou engenheiro de software graduado pela Faculdade Anhanguera. Toco a TechFlow sozinho, do diagnóstico ao suporte pós-entrega, sem intermediário, sem terceirização. Cada site, automação e sistema que sai daqui passa pela minha mão, do código ao deploy.',im:'assets/joao.jpg',b:['Engenheiro de Software · Faculdade Anhanguera','Atendimento remoto para todo o Brasil e EUA'],tg:['Python','Node.js','HTML/CSS/JS','Docker','n8n','Google Ads','Meta Ads'],m:'Olá, vi a página Sobre da TechFlow e quero conversar!',lb:'Falar comigo no WhatsApp'},
- {i:'🎓',t:'TechFlow Academy',d:'Vem aprender com a TechFlow: criar e vender com IA, do vídeo ao website.',b:['Aprenda a criar e vender com IA, do vídeo ao website'],l:'https://techflow-academy-rho.vercel.app/',lt:'Conhecer a Academy'},
  {i:'📝',t:'Peça um orçamento',d:'Me conta sobre o seu projeto e receba a proposta no WhatsApp.',b:['Diagnóstico gratuito, sem compromisso','Resposta em até 2 horas','Brasil e EUA'],l:'#orcamento',lt:'Ir para o formulário'}
 ]}
 ];
@@ -442,10 +498,80 @@ document.getElementById('fm').addEventListener('submit',e=>{
   zoomClose.addEventListener('click', closeZoom);
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !zoom.hidden) closeZoom(); });
 })();
+
+
+/* ===== SIMULAÇÃO DO ATENDENTE (10 perguntas com menus) ===== */
+(function(){
+  const steps = [{"q": "Olá! Sou o assistente virtual de uma empresa de exemplo. Qual é o seu negócio?", "o": ["Loja", "Clínica", "Escritório", "Indústria"], "r": {"Loja": "Ótimo! Lojas usam agentes para responder preço, estoque e pedidos.", "Clínica": "Clínicas usam agentes para marcar consultas e confirmar horários.", "Escritório": "Escritórios usam agentes para triagem de clientes e agendamentos.", "Indústria": "Indústrias usam agentes para orçamentos, pedidos e status de entrega."}}, {"q": "Você recebe muitas mensagens pelo WhatsApp por dia?", "o": ["Muitas", "Algumas", "Poucas"], "r": {"Muitas": "Com muitas mensagens, o agente responde todas ao mesmo tempo, sem fila.", "Algumas": "Com algumas mensagens, o agente responde na hora e você acompanha tudo.", "Poucas": "Mesmo com poucas mensagens, o agente garante resposta imediata fora do horário."}}, {"q": "Qual é a dúvida que mais aparece para você?", "o": ["Preço", "Horário", "Prazo", "Outra"], "r": {"Preço": "O agente envia a tabela de preços automaticamente.", "Horário": "O agente informa horário de funcionamento a qualquer hora.", "Prazo": "O agente informa prazos e atualiza o cliente sobre o andamento.", "Outra": "Para dúvidas fora do roteiro, o agente passa para uma pessoa."}}, {"q": "Você quer que o agente marque compromissos?", "o": ["Sim", "Não", "Talvez"], "r": {"Sim": "Ótimo: ele oferece horários livres, marca e envia a confirmação.", "Não": "Tudo bem: ele pode apenas responder e registrar o contato.", "Talvez": "Dá pra começar só com respostas e incluir agendamento depois."}}, {"q": "O cliente pede um orçamento. O que você prefere?", "o": ["Orçamento automático", "Eu envio depois", "Os dois"], "r": {"Orçamento automático": "O agente coleta os dados e gera o orçamento na hora.", "Eu envio depois": "O agente coleta os dados e avisa você com o resumo.", "Os dois": "O agente envia uma estimativa e você revisa o valor final."}}, {"q": "E quando o cliente faz uma pergunta que o agente não sabe responder?", "o": ["Passa para uma pessoa", "Registra e avisa", "Pede para aguardar"], "r": {"Passa para uma pessoa": "Ele transfere a conversa com o histórico completo.", "Registra e avisa": "Ele registra a dúvida e te avisa na mesma hora.", "Pede para aguardar": "Ele avisa o cliente e retorna assim que você responder."}}, {"q": "Em que horário você quer que o atendimento funcione?", "o": ["Horário comercial", "24 horas", "Fim de semana também"], "r": {"Horário comercial": "Ótimo para começar. Fora do horário, o agente já deixa tudo registrado.", "24 horas": "Com 24 horas, o cliente é atendido mesmo de madrugada.", "Fim de semana também": "O agente atende sábado e domingo sem depender de ninguém."}}, {"q": "Como você quer receber os contatos dos clientes?", "o": ["Planilha", "E-mail", "WhatsApp"], "r": {"Planilha": "Cada contato entra direto numa planilha organizada.", "E-mail": "Você recebe um e-mail com o resumo de cada conversa.", "WhatsApp": "Você recebe o resumo no próprio WhatsApp, em tempo real."}}, {"q": "Quer ver o agente recebendo um pedido de verdade?", "o": ["Sim, quero ver", "Depois"], "r": {"Sim, quero ver": "Dá pra montar uma demonstração com o seu tipo de negócio.", "Depois": "Sem problema: você pode voltar quando quiser ver na prática."}}, {"q": "Qual é o seu prazo para começar?", "o": ["Esta semana", "Este mês", "Ainda pesquisando"], "r": {"Esta semana": "Ótimo! Dá pra começar com um diagnóstico rápido.", "Este mês": "Perfeito: dá tempo de montar tudo com calma e testar.", "Ainda pesquisando": "Tudo bem. Vamos montar a proposta quando você decidir."}}];
+  const panel = document.getElementById('bot');
+  const body = document.getElementById('botBody');
+  const opts = document.getElementById('botOpts');
+  const openBtn = document.getElementById('simBtn');
+  if (!panel || !openBtn) return;
+  const answers = [];
+  let i = 0;
+  const addMsg = (t, me) => {
+    const d = document.createElement('div');
+    d.className = 'bot-msg' + (me ? ' me' : '');
+    d.textContent = t;
+    body.appendChild(d);
+    body.scrollTop = body.scrollHeight;
+  };
+  const setOpts = (list, onPick) => {
+    opts.innerHTML = '';
+    list.forEach(t => {
+      const b = document.createElement('button');
+      b.className = 'bot-opt';
+      b.type = 'button';
+      b.textContent = t;
+      b.addEventListener('click', () => onPick(t));
+      opts.appendChild(b);
+    });
+  };
+  const finish = () => {
+    addMsg('Pronto! Esta foi uma simulação. Para montar um agente assim para o seu negócio, fale com a TechFlow com o resumo abaixo.');
+    const msg = 'Olá! Fiz a simulação do atendente no site da TechFlow. Respostas: ' + answers.join(' | ') + '.';
+    const link = document.createElement('a');
+    link.className = 'bot-go';
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.href = 'https://api.whatsapp.com/send?phone=5531999232730&text=' + encodeURIComponent(msg);
+    link.textContent = 'Falar com a TechFlow com este resumo';
+    opts.innerHTML = '';
+    opts.appendChild(link);
+  };
+  const ask = () => {
+    addMsg(steps[i].q);
+    setOpts(steps[i].o, pick);
+  };
+  const pick = (t) => {
+    addMsg(t, true);
+    answers.push(t);
+    addMsg(steps[i].r[t]);
+    i++;
+    if (i < steps.length) setTimeout(ask, 500);
+    else setTimeout(finish, 500);
+  };
+  const start = () => {
+    panel.hidden = false;
+    body.innerHTML = '';
+    opts.innerHTML = '';
+    answers.length = 0;
+    i = 0;
+    ask();
+  };
+  openBtn.addEventListener('click', start);
+  document.getElementById('botClose').addEventListener('click', () => { panel.hidden = true; });
+})();
 </script>
 <div class="photo-zoom" id="photoZoom" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
   <img id="photoZoomImg" alt="João Paulo, fundador da TechFlow">
   <button class="photo-zoom-x" id="photoZoomClose" aria-label="Fechar">✕</button>
+</div>
+<div class="bot" id="bot" hidden role="dialog" aria-label="Atendimento automático TechFlow">
+  <div class="bot-head"><span class="bot-dot"></span><div><b>Atendimento TechFlow</b><small>Automático · responde na hora</small></div><button class="bot-x" id="botClose" aria-label="Fechar">✕</button></div>
+  <div class="bot-body" id="botBody"></div>
+  <div class="bot-opts" id="botOpts"></div>
 </div>
 </body>
 </html>
