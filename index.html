@@ -243,8 +243,7 @@ header{flex-wrap:wrap;row-gap:10px}
   <p>A TechFlow automatiza <strong class="hl">até 90% das tarefas administrativas</strong> de qualquer empresa, em qualquer nicho, com <strong>funcionários de IA</strong>: administrativo, contábil, tesouraria, RH e atendimento por WhatsApp e por voz.</p>
 </section>
 
-<div id="iaslot"></div><div class="sim-wrap"><button class="btn ghost sim-btn" id="simBtn" type="button">Ver simulação do atendente</button></div>
-<section class="lab-card-wrap" id="laboratorio">
+<div id="iaslot"></div><section class="lab-card-wrap" id="laboratorio">
   <a class="lab-card" href="https://jpsinuca15-bit.github.io/laboratoriodeia/" target="_blank" rel="noopener noreferrer" aria-label="Entrar no laboratório de IA da TechFlow">
     <div class="lab-card-glow" aria-hidden="true"></div>
     <div class="lab-card-body">
@@ -500,78 +499,10 @@ document.getElementById('fm').addEventListener('submit',e=>{
 })();
 
 
-/* ===== SIMULAÇÃO DO ATENDENTE (10 perguntas com menus) ===== */
-(function(){
-  const steps = [{"q": "Olá! Sou o assistente virtual de uma empresa de exemplo. Qual é o seu negócio?", "o": ["Loja", "Clínica", "Escritório", "Indústria"], "r": {"Loja": "Ótimo! Lojas usam agentes para responder preço, estoque e pedidos.", "Clínica": "Clínicas usam agentes para marcar consultas e confirmar horários.", "Escritório": "Escritórios usam agentes para triagem de clientes e agendamentos.", "Indústria": "Indústrias usam agentes para orçamentos, pedidos e status de entrega."}}, {"q": "Você recebe muitas mensagens pelo WhatsApp por dia?", "o": ["Muitas", "Algumas", "Poucas"], "r": {"Muitas": "Com muitas mensagens, o agente responde todas ao mesmo tempo, sem fila.", "Algumas": "Com algumas mensagens, o agente responde na hora e você acompanha tudo.", "Poucas": "Mesmo com poucas mensagens, o agente garante resposta imediata fora do horário."}}, {"q": "Qual é a dúvida que mais aparece para você?", "o": ["Preço", "Horário", "Prazo", "Outra"], "r": {"Preço": "O agente envia a tabela de preços automaticamente.", "Horário": "O agente informa horário de funcionamento a qualquer hora.", "Prazo": "O agente informa prazos e atualiza o cliente sobre o andamento.", "Outra": "Para dúvidas fora do roteiro, o agente passa para uma pessoa."}}, {"q": "Você quer que o agente marque compromissos?", "o": ["Sim", "Não", "Talvez"], "r": {"Sim": "Ótimo: ele oferece horários livres, marca e envia a confirmação.", "Não": "Tudo bem: ele pode apenas responder e registrar o contato.", "Talvez": "Dá pra começar só com respostas e incluir agendamento depois."}}, {"q": "O cliente pede um orçamento. O que você prefere?", "o": ["Orçamento automático", "Eu envio depois", "Os dois"], "r": {"Orçamento automático": "O agente coleta os dados e gera o orçamento na hora.", "Eu envio depois": "O agente coleta os dados e avisa você com o resumo.", "Os dois": "O agente envia uma estimativa e você revisa o valor final."}}, {"q": "E quando o cliente faz uma pergunta que o agente não sabe responder?", "o": ["Passa para uma pessoa", "Registra e avisa", "Pede para aguardar"], "r": {"Passa para uma pessoa": "Ele transfere a conversa com o histórico completo.", "Registra e avisa": "Ele registra a dúvida e te avisa na mesma hora.", "Pede para aguardar": "Ele avisa o cliente e retorna assim que você responder."}}, {"q": "Em que horário você quer que o atendimento funcione?", "o": ["Horário comercial", "24 horas", "Fim de semana também"], "r": {"Horário comercial": "Ótimo para começar. Fora do horário, o agente já deixa tudo registrado.", "24 horas": "Com 24 horas, o cliente é atendido mesmo de madrugada.", "Fim de semana também": "O agente atende sábado e domingo sem depender de ninguém."}}, {"q": "Como você quer receber os contatos dos clientes?", "o": ["Planilha", "E-mail", "WhatsApp"], "r": {"Planilha": "Cada contato entra direto numa planilha organizada.", "E-mail": "Você recebe um e-mail com o resumo de cada conversa.", "WhatsApp": "Você recebe o resumo no próprio WhatsApp, em tempo real."}}, {"q": "Quer ver o agente recebendo um pedido de verdade?", "o": ["Sim, quero ver", "Depois"], "r": {"Sim, quero ver": "Dá pra montar uma demonstração com o seu tipo de negócio.", "Depois": "Sem problema: você pode voltar quando quiser ver na prática."}}, {"q": "Qual é o seu prazo para começar?", "o": ["Esta semana", "Este mês", "Ainda pesquisando"], "r": {"Esta semana": "Ótimo! Dá pra começar com um diagnóstico rápido.", "Este mês": "Perfeito: dá tempo de montar tudo com calma e testar.", "Ainda pesquisando": "Tudo bem. Vamos montar a proposta quando você decidir."}}];
-  const panel = document.getElementById('bot');
-  const body = document.getElementById('botBody');
-  const opts = document.getElementById('botOpts');
-  const openBtn = document.getElementById('simBtn');
-  if (!panel || !openBtn) return;
-  const answers = [];
-  let i = 0;
-  const addMsg = (t, me) => {
-    const d = document.createElement('div');
-    d.className = 'bot-msg' + (me ? ' me' : '');
-    d.textContent = t;
-    body.appendChild(d);
-    body.scrollTop = body.scrollHeight;
-  };
-  const setOpts = (list, onPick) => {
-    opts.innerHTML = '';
-    list.forEach(t => {
-      const b = document.createElement('button');
-      b.className = 'bot-opt';
-      b.type = 'button';
-      b.textContent = t;
-      b.addEventListener('click', () => onPick(t));
-      opts.appendChild(b);
-    });
-  };
-  const finish = () => {
-    addMsg('Pronto! Esta foi uma simulação. Para montar um agente assim para o seu negócio, fale com a TechFlow com o resumo abaixo.');
-    const msg = 'Olá! Fiz a simulação do atendente no site da TechFlow. Respostas: ' + answers.join(' | ') + '.';
-    const link = document.createElement('a');
-    link.className = 'bot-go';
-    link.target = '_blank';
-    link.rel = 'noopener';
-    link.href = 'https://api.whatsapp.com/send?phone=5531999232730&text=' + encodeURIComponent(msg);
-    link.textContent = 'Falar com a TechFlow com este resumo';
-    opts.innerHTML = '';
-    opts.appendChild(link);
-  };
-  const ask = () => {
-    addMsg(steps[i].q);
-    setOpts(steps[i].o, pick);
-  };
-  const pick = (t) => {
-    addMsg(t, true);
-    answers.push(t);
-    addMsg(steps[i].r[t]);
-    i++;
-    if (i < steps.length) setTimeout(ask, 500);
-    else setTimeout(finish, 500);
-  };
-  const start = () => {
-    panel.hidden = false;
-    body.innerHTML = '';
-    opts.innerHTML = '';
-    answers.length = 0;
-    i = 0;
-    ask();
-  };
-  openBtn.addEventListener('click', start);
-  document.getElementById('botClose').addEventListener('click', () => { panel.hidden = true; });
-})();
 </script>
 <div class="photo-zoom" id="photoZoom" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
   <img id="photoZoomImg" alt="João Paulo, fundador da TechFlow">
   <button class="photo-zoom-x" id="photoZoomClose" aria-label="Fechar">✕</button>
-</div>
-<div class="bot" id="bot" hidden role="dialog" aria-label="Atendimento automático TechFlow">
-  <div class="bot-head"><span class="bot-dot"></span><div><b>Atendimento TechFlow</b><small>Automático · responde na hora</small></div><button class="bot-x" id="botClose" aria-label="Fechar">✕</button></div>
-  <div class="bot-body" id="botBody"></div>
-  <div class="bot-opts" id="botOpts"></div>
 </div>
 </body>
 </html>
